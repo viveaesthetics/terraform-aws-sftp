@@ -35,7 +35,7 @@ data "aws_iam_policy_document" "transfer_server_assume_policy" {
     effect = "Allow"
 
     actions = [
-      "s3*:ListBucket",
+      "s3:ListBucket",
     ]
 
     resources = ["arn:aws:s3:::${var.s3_bucket_id}"]            
@@ -44,8 +44,8 @@ data "aws_iam_policy_document" "transfer_server_assume_policy" {
     effect = "Allow"
 
     actions = [
-      "s3*:Get*",
-      "s3*:Put*",
+      "s3:Get*",
+      "s3:Put*",
     ]
 
     resources = [
