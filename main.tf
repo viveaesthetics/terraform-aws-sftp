@@ -18,7 +18,6 @@ module "labels" {
   label_order = var.label_order
 }
 
-
 data "aws_iam_policy_document" "transfer_server_assume_role" {
   statement {
     effect  = "Allow"
@@ -36,10 +35,23 @@ data "aws_iam_policy_document" "transfer_server_assume_policy" {
     effect = "Allow"
 
     actions = [
-      "s3:*",
+      "s3*:ListBucket",
     ]
 
-    resources = ["*"]
+    resources = ["arn:aws:s3:::${s3_bucket_id}"]            
+  }
+  statement {
+    effect = "Allow"
+
+    actions = [
+      "s3*:Get*",
+      "s3*:Put*",
+    ]
+
+    resources = [
+      "arn:aws:s3:::${s3_bucket_id}",
+      "arn:aws:s3:::${s3_bucket_id}/*",
+    ]
   }
 }
 
