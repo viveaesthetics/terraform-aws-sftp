@@ -38,7 +38,7 @@ data "aws_iam_policy_document" "transfer_server_assume_policy" {
       "s3*:ListBucket",
     ]
 
-    resources = ["arn:aws:s3:::${s3_bucket_id}"]            
+    resources = ["arn:aws:s3:::${var.s3_bucket_id}"]            
   }
   statement {
     effect = "Allow"
@@ -49,8 +49,8 @@ data "aws_iam_policy_document" "transfer_server_assume_policy" {
     ]
 
     resources = [
-      "arn:aws:s3:::${s3_bucket_id}",
-      "arn:aws:s3:::${s3_bucket_id}/*",
+      "arn:aws:s3:::${var.s3_bucket_id}",
+      "arn:aws:s3:::${var.s3_bucket_id}/*",
     ]
   }
 }
